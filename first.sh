@@ -148,6 +148,8 @@ echo $%%HASSIO_CONFIG%%
 echo %%HASSIO_CONFIG%%
 echo "dddddddd"
 echo ${CONFIG}
+echo $PREFIX
+echo ${PREFIX}
 echo "-------------"
 
 ##
