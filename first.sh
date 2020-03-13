@@ -146,6 +146,7 @@ echo "[Info] Install supervisor Docker container"
 echo "-------------"
 echo $%%HASSIO_CONFIG%%
 echo %%HASSIO_CONFIG%%
+echo "dddddddd"
 echo ${CONFIG}
 echo "-------------"
 
