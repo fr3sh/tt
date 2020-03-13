@@ -143,6 +143,9 @@ EOF
 echo "[Info] Install supervisor Docker container"
 #docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
 #docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+echo "-------------"
+echo $HOMEASSISTANT
+echo "-------------"
 
 ##
 # Install Hass.io Supervisor
@@ -150,9 +153,7 @@ echo "[Info] Install supervisor startup scripts"
 curl -sL ${URL_BIN_HASSIO} > "${PREFIX}"/sbin/hassio-supervisor
 curl -sL ${URL_SERVICE_HASSIO} > "${SYSCONFDIR}"/systemd/system/hassio-supervisor.service
 
-echo "[Info] -------------"
-echo $HOMEASSISTANT
-echo "-------------"
+
 
 sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}"/sbin/hassio-supervisor
 sed -i -e "s,%%DOCKER_BINARY%%,${DOCKER_BINARY},g" \
