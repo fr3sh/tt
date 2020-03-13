@@ -150,6 +150,10 @@ echo "[Info] Install supervisor startup scripts"
 curl -sL ${URL_BIN_HASSIO} > "${PREFIX}"/sbin/hassio-supervisor
 curl -sL ${URL_SERVICE_HASSIO} > "${SYSCONFDIR}"/systemd/system/hassio-supervisor.service
 
+echo "-------------"
+echo $HOMEASSISTANT
+echo "-------------"
+
 sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}"/sbin/hassio-supervisor
 sed -i -e "s,%%DOCKER_BINARY%%,${DOCKER_BINARY},g" \
        -e "s,%%DOCKER_SERVICE%%,${DOCKER_SERVICE},g" \
