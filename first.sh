@@ -145,6 +145,8 @@ echo "[Info] Install supervisor Docker container"
 #docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
 echo "-------------"
 echo $%%HASSIO_CONFIG%%
+echo %%HASSIO_CONFIG%%
+echo ${CONFIG}
 echo "-------------"
 
 ##
