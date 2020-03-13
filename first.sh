@@ -150,7 +150,7 @@ echo "[Info] Install supervisor startup scripts"
 curl -sL ${URL_BIN_HASSIO} > "${PREFIX}"/sbin/hassio-supervisor
 curl -sL ${URL_SERVICE_HASSIO} > "${SYSCONFDIR}"/systemd/system/hassio-supervisor.service
 
-echo "-------------"
+echo "[Info] -------------"
 echo $HOMEASSISTANT
 echo "-------------"
 
