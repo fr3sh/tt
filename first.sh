@@ -141,8 +141,8 @@ EOF
 ##
 # Pull supervisor image
 echo "[Info] Install supervisor Docker container"
-docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
-docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+#docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
+#docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
 
 ##
 # Install Hass.io Supervisor
@@ -157,28 +157,4 @@ sed -i -e "s,%%DOCKER_BINARY%%,${DOCKER_BINARY},g" \
        "${SYSCONFDIR}"/systemd/system/hassio-supervisor.service
 
 chmod a+x "${PREFIX}"/sbin/hassio-supervisor
-systemctl enable hassio-supervisor.service
 
-#
-# Install Hass.io AppArmor
-if command -v apparmor_parser > /dev/null 2>&1; then
-    echo "[Info] Install AppArmor scripts"
-    mkdir -p "${DATA_SHARE}"/apparmor
-    curl -sL ${URL_BIN_APPARMOR} > "${PREFIX}"/sbin/hassio-apparmor
-    curl -sL ${URL_SERVICE_APPARMOR} > "${SYSCONFDIR}"/systemd/system/hassio-apparmor.service
-    curl -sL ${URL_APPARMOR_PROFILE} > "${DATA_SHARE}"/apparmor/hassio-supervisor
-
-    sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}"/sbin/hassio-apparmor
-    sed -i -e "s,%%DOCKER_SERVICE%%,${DOCKER_SERVICE},g" \
-	   -e "s,%%HASSIO_APPARMOR_BINARY%%,${PREFIX}/sbin/hassio-apparmor,g" \
-	   "${SYSCONFDIR}"/systemd/system/hassio-apparmor.service
-
-    chmod a+x "${PREFIX}"/sbin/hassio-apparmor
-    systemctl enable hassio-apparmor.service
-    systemctl start hassio-apparmor.service
-fi
-
-##
-# Init system
-echo "[Info] Run Hass.io"
-systemctl start hassio-supervisor.service
